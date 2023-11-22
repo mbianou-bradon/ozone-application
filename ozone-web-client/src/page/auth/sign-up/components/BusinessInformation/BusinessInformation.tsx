@@ -63,6 +63,12 @@ export default function BusinessInformation() {
           inputType={"text"}
         />
       </div>
+
+      <h2>DOCUMENTS</h2>
+      <p>
+        Once the following documents are signed, you'll be ready to get started
+      </p>
+      <div></div>
     </div>
   );
 }
