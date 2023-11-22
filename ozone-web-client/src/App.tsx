@@ -4,6 +4,7 @@ import "./App.css";
 import TextInput from "./components/Input/TextInput/TextInput";
 import Button from "./components/Button/Button";
 import SignUp from "./page/auth/sign-up/SignUp";
+import { DocumentSigning } from "./components";
 
 function App() {
   /** State Management */
@@ -24,7 +25,7 @@ function App() {
       </div>
 
       <div className="mt-10">
-        <SignUp />
+        <DocumentSigning />
       </div>
     </div>
   );

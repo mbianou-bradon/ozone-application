@@ -1,7 +1,7 @@
 import React from "react";
 
 type Props = {
-  text: string;
+  text?: string;
   leftIcon?: boolean;
   rightIcon?: boolean;
   onClick?: () => void;
