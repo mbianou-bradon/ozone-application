@@ -1,4 +1,5 @@
 import React from "react";
+import ChevronIcon from "../../assets/icons/chevron-icon";
 
 type Props = {
   text?: string;
@@ -29,9 +30,13 @@ export default function Button({
           : "text-dark-blue"
       } ${customStyle}`}
     >
-      {leftIcon && <span>&lt;</span>}
+      {leftIcon && <ChevronIcon />}
       <span>{text}</span>
-      {rightIcon && <span>&gt;</span>}
+      {rightIcon && (
+        <div className="rotate-180">
+          <ChevronIcon />
+        </div>
+      )}
     </button>
   );
 }

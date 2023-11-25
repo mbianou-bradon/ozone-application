@@ -48,7 +48,7 @@ export default function SignUp() {
   }
 
   return (
-    <div className="text-slate-800 w-full sm:w-[60%] mx-auto my-10">
+    <div className="text-slate-800 w-full sm:w-[80%] lg:w-[70%] xl:w-[60%] mx-auto my-10">
       <div className="rounded-2xl overflow-hidden shadow-xl">
         <HeaderBreadCrumb index={index} setIndex={setIndex} />
         <div className="text-center py-10">
