@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { Dropdown, TextInput } from "../../../../../components";
+import {
+  DocumentSigning,
+  Dropdown,
+  TextInput,
+} from "../../../../../components";
 
 export default function BusinessInformation() {
   /** State management */
@@ -12,7 +16,7 @@ export default function BusinessInformation() {
 
   return (
     <div>
-      <h2>GENERAL INFORMATION</h2>
+      <h2 className="text-dark-blue mt-4 mb-2 text-sm">GENERAL INFORMATION</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <TextInput
           value={brandName}
@@ -64,11 +68,22 @@ export default function BusinessInformation() {
         />
       </div>
 
-      <h2>DOCUMENTS</h2>
-      <p>
+      <h2 className="text-dark-blue mt-8 mb-2 text-sm">DOCUMENTS</h2>
+      <p className="text-sm mb-2">
         Once the following documents are signed, you'll be ready to get started
       </p>
-      <div></div>
+      <div className="flex flex-col gap-3">
+        <DocumentSigning />
+        <DocumentSigning />
+      </div>
+
+      <h2 className="text-dark-blue mt-8 mb-2 text-sm">COI PDF UPLOAD</h2>
+      <p className="text-sm mb-2">
+        Once the following documents are signed, you'll be ready to get started
+      </p>
+      <div className="flex flex-col gap-3">
+        <DocumentSigning />
+      </div>
     </div>
   );
 }

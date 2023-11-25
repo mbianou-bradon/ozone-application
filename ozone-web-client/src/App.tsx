@@ -1,31 +1,43 @@
-import React, { useState } from "react";
-import TextInput from "./components/Input/TextInput/TextInput";
-import Button from "./components/Button/Button";
-import { DocumentSigning } from "./components";
+import { Outlet, createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Contact, Error, Home, SignIn, SignUp } from "./page";
+const MyApp = () => {
+  return (
+    <div className="bg-primary [&_*]:transition-transform [&_*]:ease-linear [&_*]:duration-200">
+      <div>
+        <Outlet />
+      </div>
+    </div>
+  );
+};
+
+const router = createBrowserRouter([
+  {
+    element: <MyApp />,
+    errorElement: <Error />,
+    children: [
+      { path: "/", element: <Home /> },
+      { path: "/contact", element: <Contact /> },
+      {
+        path: "/auth",
+        element: (
+          <div>
+            <Outlet />
+          </div>
+        ),
+        children: [
+          { path: "sign-in", element: <SignIn /> },
+          { path: "sign-up", element: <SignUp /> },
+        ],
+      },
+    ],
+  },
+]);
 
 function App() {
-  /** State Management */
-  const [value, setValue] = useState<string>("");
   return (
-    // <div className="px-4 flex items-center flex-col justify-center h-screen">
-    //   <TextInput
-    //     value={value}
-    //     setValue={setValue}
-    //     label={"First Name"}
-    //     placeholder={"Input Your Brand Name"}
-    //     required={true}
-    //     inputType={"text"}
-    //   />
-
-    //   <div>
-    //     <Button text="Next" type="bordered" />
-    //   </div>
-
-    //   <div className="mt-10">
-    //     <DocumentSigning />
-    //   </div>
-    // </div>
-    <div></div>
+    <div className="App text-slate-800 max-w-[1500px] mx-auto">
+      <RouterProvider router={router} />
+    </div>
   );
 }
 

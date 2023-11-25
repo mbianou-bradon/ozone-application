@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import TextInput from "../../../components/Input/TextInput/TextInput";
 import Button from "../../../components/Button/Button";
 import Dropdown from "../../../components/Input/Dropdown/Dropdown";
+import BusinessInformation from "./components/BusinessInformation/BusinessInformation";
 
 export default function SignUp() {
   /** state management */
   const [value, setValue] = useState<string>("");
   return (
-    <div>
+    <div className="text-slate-800 w-[70%] mx-auto">
       <div className="text-center">
         <h3 className="text-neutral-gray">Step 1</h3>
         <h1 className="text-2xl text-dark-blue font-semibold my-2">
@@ -20,56 +21,7 @@ export default function SignUp() {
       </div>
 
       <form action="">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-          <TextInput
-            value={""}
-            setValue={setValue}
-            label={"Brand Name"}
-            placeholder={"Input Your Brand Name"}
-            required
-            inputType={"text"}
-          />
-          <Dropdown
-            value={""}
-            setValue={setValue}
-            label={"Last Name"}
-            placeholder={"Input Your Last Name"}
-            required
-            data={[]}
-          />
-          <TextInput
-            value={""}
-            setValue={setValue}
-            label={"Street Address"}
-            placeholder={"Input Your Street Address"}
-            required
-            inputType={"text"}
-          />
-          <TextInput
-            value={""}
-            setValue={setValue}
-            label={"City"}
-            placeholder={"Input City"}
-            required
-            inputType={"text"}
-          />
-          <TextInput
-            value={""}
-            setValue={setValue}
-            label={"Zip Code"}
-            placeholder={"Input Zip Code"}
-            required
-            inputType={"text"}
-          />
-          <TextInput
-            value={""}
-            setValue={setValue}
-            label={"Tax ID Number"}
-            placeholder={"Input Tax ID Number"}
-            required
-            inputType={"text"}
-          />
-        </div>
+        <BusinessInformation />
 
         <div className="flex items-center justify-between my-10">
           <Button text="Back to Login" type="none" leftIcon />

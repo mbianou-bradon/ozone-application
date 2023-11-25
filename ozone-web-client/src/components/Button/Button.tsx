@@ -6,6 +6,7 @@ type Props = {
   rightIcon?: boolean;
   onClick?: () => void;
   type: "filled" | "bordered" | "none";
+  customStyle?: string;
 };
 
 export default function Button({
@@ -14,6 +15,7 @@ export default function Button({
   rightIcon,
   onClick,
   type,
+  customStyle,
 }: Props) {
   return (
     <button
@@ -25,7 +27,7 @@ export default function Button({
           : type === "bordered"
           ? "border border-dark-purple text-dark-purple hover:bg-gradient-t-r hover:from-dark-purple hover:to-light-purple"
           : "text-dark-blue"
-      }`}
+      } ${customStyle}`}
     >
       {leftIcon && <span>&lt;</span>}
       <span>{text}</span>
