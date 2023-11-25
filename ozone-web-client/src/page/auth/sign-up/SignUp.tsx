@@ -3,35 +3,89 @@ import TextInput from "../../../components/Input/TextInput/TextInput";
 import Button from "../../../components/Button/Button";
 import Dropdown from "../../../components/Input/Dropdown/Dropdown";
 import BusinessInformation from "./components/BusinessInformation/BusinessInformation";
+import YourProfile from "./components/YourProfile/YourProfile";
+import AdditionalUsers from "./components/AdditionalUsers/AdditionalUsers";
+import HeaderBreadCrumb from "./components/HeaderBreadCrumb/HeaderBreadCrumb";
 
 export default function SignUp() {
   /** state management */
-  const [value, setValue] = useState<string>("");
+  const [index, setIndex] = useState<number>(0);
+  const RegistrationSteps = [
+    {
+      number: 1,
+      heading: "Your Profile",
+      description:
+        "Enter the login information for your account. You will be able to create additional users after registering.",
+      node: <YourProfile />,
+    },
+    {
+      number: 2,
+      heading: "Business Information",
+      description: "Please, enter information about your componany",
+      node: <BusinessInformation />,
+    },
+    {
+      number: 3,
+      heading: "Create Additional Users",
+      description:
+        "Please fill in additional information to create extra users",
+      node: <AdditionalUsers />,
+    },
+  ];
+
+  function handlePrev(index: number) {
+    if (index !== 0) {
+      setIndex(index - 1);
+    }
+  }
+
+  function handleNext(index: number) {
+    if (index + 1 > RegistrationSteps.length) {
+      setIndex(RegistrationSteps.length);
+    } else {
+      setIndex(index + 1);
+    }
+  }
+
   return (
     <div className="text-slate-800 w-[70%] mx-auto">
-      <div className="text-center">
-        <h3 className="text-neutral-gray">Step 1</h3>
-        <h1 className="text-2xl text-dark-blue font-semibold my-2">
-          Your Profile
-        </h1>
-        <p className="w-[70%] mx-auto">
-          Enter the login information for your account. You will be able to
-          create additional users after registering.{" "}
-        </p>
+      <div className="bg-slate-300">
+        <HeaderBreadCrumb index={index} setIndex={setIndex} />
+        <div className="text-center">
+          <h3 className="text-neutral-gray">
+            Step {RegistrationSteps[index].number}
+          </h3>
+          <h1 className="text-2xl text-dark-blue font-semibold my-2">
+            {RegistrationSteps[index].heading}
+          </h1>
+          <p className="w-[70%] mx-auto">
+            {RegistrationSteps[index].description}
+          </p>
+        </div>
+
+        <form action="">{RegistrationSteps[index].node}</form>
       </div>
 
-      <form action="">
-        <BusinessInformation />
+      <div className="flex items-center justify-between my-10">
+        <Button text="Back to Login" type="none" leftIcon />
 
-        <div className="flex items-center justify-between my-10">
-          <Button text="Back to Login" type="none" leftIcon />
-
-          <div className="flex gap-3">
-            <Button text="Previous Step" type="bordered" leftIcon />
-            <Button text="Next Step" type="filled" rightIcon />
-          </div>
+        <div className="flex gap-3">
+          {index !== 0 && (
+            <Button
+              text="Previous Step"
+              type="bordered"
+              leftIcon
+              onClick={() => handlePrev(index)}
+            />
+          )}
+          <Button
+            text="Next Step"
+            type="filled"
+            rightIcon
+            onClick={() => handleNext(index)}
+          />
         </div>
-      </form>
+      </div>
     </div>
   );
 }

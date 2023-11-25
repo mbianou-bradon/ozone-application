@@ -29,7 +29,7 @@ export default function BusinessInformation() {
         <Dropdown
           value={brandType}
           setValue={setBrandType}
-          label={"Last Name"}
+          label={"Brand Type"}
           placeholder={"Input Your Last Name"}
           required
           data={[]}
