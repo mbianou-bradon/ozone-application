@@ -21,7 +21,7 @@ export default function SignUp() {
     {
       number: 2,
       heading: "Business Information",
-      description: "Please, enter information about your componany",
+      description: "Please, enter information about your company",
       node: <BusinessInformation />,
     },
     {
@@ -49,7 +49,7 @@ export default function SignUp() {
 
   return (
     <div className="text-slate-800 w-full sm:w-[80%] lg:w-[70%] xl:w-[60%] mx-auto my-10">
-      <div className="rounded-2xl overflow-hidden shadow-xl">
+      <div className="rounded-2xl  shadow-xl">
         <HeaderBreadCrumb index={index} setIndex={setIndex} />
         <div className="text-center py-10">
           <h3 className="text-neutral-gray">

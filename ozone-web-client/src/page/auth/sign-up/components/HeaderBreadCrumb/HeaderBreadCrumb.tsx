@@ -11,7 +11,7 @@ export default function HeaderBreadCrumb({ index, setIndex }: Props) {
   return (
     <div>
       <div
-        className={`flex items-center h-14 bg-[#edecfc] relative before:absolute ${
+        className={`flex items-center h-14 bg-[#edecfc] relative before:absolute rounded-t-md overflow-hidden ${
           index === 0
             ? "before:w-1/3 before:rounded-r-full"
             : index === 1

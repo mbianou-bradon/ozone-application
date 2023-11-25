@@ -32,7 +32,7 @@ export default function BusinessInformation() {
           label={"Brand Type"}
           placeholder={"Input Your Last Name"}
           required
-          data={[]}
+          data={["Local", "National"]}
         />
         <TextInput
           value={streetAddress}
