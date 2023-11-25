@@ -48,22 +48,24 @@ export default function SignUp() {
   }
 
   return (
-    <div className="text-slate-800 w-[70%] mx-auto">
-      <div className="bg-slate-300">
+    <div className="text-slate-800 w-full sm:w-[60%] mx-auto my-10">
+      <div className="rounded-2xl overflow-hidden shadow-xl">
         <HeaderBreadCrumb index={index} setIndex={setIndex} />
-        <div className="text-center">
+        <div className="text-center py-10">
           <h3 className="text-neutral-gray">
             Step {RegistrationSteps[index].number}
           </h3>
           <h1 className="text-2xl text-dark-blue font-semibold my-2">
             {RegistrationSteps[index].heading}
           </h1>
-          <p className="w-[70%] mx-auto">
+          <p className="w-[55%] mx-auto">
             {RegistrationSteps[index].description}
           </p>
         </div>
 
-        <form action="">{RegistrationSteps[index].node}</form>
+        <form action="" className="px-20 pb-10">
+          {RegistrationSteps[index].node}
+        </form>
       </div>
 
       <div className="flex items-center justify-between my-10">
