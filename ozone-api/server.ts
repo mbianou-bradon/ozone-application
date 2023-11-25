@@ -1,8 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
-import productRoutes from "./routes/productRoute/ProductRoutes";
-import userRoutes from "../routes/userRoutes";
-import categoryRoutes from "./routes/categoryRoutes";
+import productRoutes from "./routes/productRoutes/ProductRoutes";
+import userRoutes from "./routes/userRoutes/userRoutes";
 import cors from "cors";
 
 if (process.env.NODE_ENV !== "production") {
@@ -44,4 +43,3 @@ app.use((req, res, next) => {
 
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
-app.use("/api/category", categoryRoutes);

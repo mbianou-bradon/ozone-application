@@ -8,29 +8,20 @@ export const createProduct = async (
   res: Express.Response,
   next: any
 ) => {
-  const {
-    message,
-    category,
-    image,
-    location,
-    duration,
-    visibility,
-    report,
-    user,
-  } = req.body;
+  const { name, category, imageUrl, amount, stock, description, user } =
+    req.body;
 
-  const Product = {
-    message,
+  const product = {
+    name,
     category,
-    image,
-    location,
-    duration,
-    visibility,
-    report,
+    imageUrl,
+    amount,
+    stock,
+    description,
     user,
   };
   try {
-    const newProduct = await Product.create(Product);
+    const newProduct = await Product.create(product);
     return next(
       res.status(201).json({
         status: "OK",
@@ -54,14 +45,13 @@ export const getProduct = async (
     return res.status(404).json({ message: "Product Doesn't exist! Wrong id" });
   }
 
-  const Product = await Product.findById(id).populate({
+  const product = await Product.findById(id).populate({
     path: "user",
-    select:
-      "-createdAt -updatedAt -category -age -strikes -firstTime -ban -oAuthToken",
+    select: "+brandName +streetAdress +city",
     options: { strictPopulate: false },
   });
 
-  if (!Product) {
+  if (!product) {
     return res
       .status(404)
       .json({ message: "Product Doesn't exist! Not Found!" });
@@ -70,7 +60,7 @@ export const getProduct = async (
   return next(
     res.status(201).json({
       status: "OK",
-      data: Product,
+      data: product,
     })
   );
 };
@@ -85,118 +75,29 @@ export const getAllProducts = async (
   let page = Number(String(req.query.page)) - 1 || 0;
   const limit = Number(String(req.query.limit)) || defaultLimit;
   const search = req.query.search || "";
-  const hidden = req.query.hidden || "true";
 
-  let category: string | string[] = String(req.query.category)! || "All";
-
-  const categories = await Category.find({})
-    .sort({ createdAt: -1 })
-    .select("name");
-
-  const allCategories = categories.map((category) => category.name);
-
-  category === "All"
-    ? (category = [...allCategories])
-    : (category = category.split(","));
-
-  let query: any = {
-    message: { $regex: search, $options: "i" },
-    category: { $in: [...category] },
-  };
-
-  if (hidden === "true") {
-    query = {
-      ...query,
-      visibility: { $eq: true },
-    };
-  } else if (hidden === "false") {
-    query = query;
-  }
-  const Products = await Product.find(query)
+  const products = await Product.find({
+    name: { $regex: search, $options: "i" },
+  })
     .sort({ createdAt: -1 })
     .skip(page * limit)
     .limit(limit)
     .populate({
       path: "user",
-      select:
-        "-createdAt -updatedAt -category -age -strikes -firstTime -ban -oAuthToken",
+      select: "+brandName +streetAdress +city",
       options: { strictPopulate: false },
     });
 
-  const result = await Product.countDocuments(query);
+  const result = await Product.countDocuments({
+    name: { $regex: search, $options: "i" },
+  });
 
   const response = {
     error: false,
     result,
     limit,
     page: page + 1,
-    category: categories,
-    Products,
-  };
-
-  return next(res.status(200).json(response));
-};
-
-// Get All Products per filtering params
-export const getAllFilteredProducts = async (
-  req: Express.Request,
-  res: Express.Response,
-  next: any
-) => {
-  const defaultLimit = 10;
-  let page = Number(String(req.query.page)) - 1 || 0;
-  const limit = Number(String(req.query.limit)) || defaultLimit;
-  const search = req.query.search || "";
-  const hidden = req.query.hidden || "true";
-  const location = req.query.location || "";
-  const date = req.query.date || "";
-
-  let category: string | string[] = String(req.query.category)! || "All";
-
-  const categories = await Category.find({})
-    .sort({ createdAt: -1 })
-    .select("name");
-
-  const allCategories = categories.map((category) => category.name);
-
-  category === "All"
-    ? (category = [...allCategories])
-    : (category = category.split(","));
-
-  let query: any = {
-    message: { $regex: search, $options: "i" },
-    category: { $in: [...category] },
-  };
-
-  if (hidden === "true") query = { ...query, visibility: { $eq: true } };
-  else if (hidden === "false") query = query;
-
-  if (location !== "") query = { ...query, location: { $eq: location } };
-
-  if (date !== "") query = { ...query, duration: { $eq: date } };
-
-  console.log(query);
-
-  const Products = await Product.find(query)
-    .sort({ createdAt: -1 })
-    .skip(page * limit)
-    .limit(limit)
-    .populate({
-      path: "user",
-      select:
-        "-createdAt -updatedAt -category -age -strikes -firstTime -ban -oAuthToken",
-      options: { strictPopulate: false },
-    });
-
-  const result = await Product.countDocuments(query);
-
-  const response = {
-    error: false,
-    result,
-    limit,
-    page: page + 1,
-    category: categories,
-    Products,
+    products,
   };
 
   return next(res.status(200).json(response));
@@ -214,19 +115,19 @@ export const updateProduct = async (
     return next(
       res.status(404).json({
         status: "Not Found",
-        message: "Product doesn't exist",
+        message: "Invalid Product ID",
       })
     );
   }
 
-  const Product = await Product.findOneAndUpdate(
+  const product = await Product.findOneAndUpdate(
     { _id: id },
     {
       ...req.body,
     }
   );
 
-  if (!Product) {
+  if (!product) {
     return next(
       res.status(404).json({
         status: "Not Found",
@@ -238,7 +139,7 @@ export const updateProduct = async (
   return next(
     res.status(200).json({
       status: "OK",
-      data: Product,
+      data: product,
     })
   );
 };
@@ -255,12 +156,12 @@ export const deleteProduct = async (
     return next(
       res.status(404).json({
         status: "Not Found",
-        message: "Product doesn't exist",
+        message: "Invalid Product",
       })
     );
   }
 
-  const Product = await Product.findOneAndDelete({ _id: id });
+  const product = await Product.findOneAndDelete({ _id: id });
 
   if (!Product) {
     return next(

@@ -18,9 +18,12 @@ const ProductSchema = new mongoose.Schema(
       type: Number,
       required: [true, "Please enter amount of the Product"],
     },
-    report: {
+    stock: {
       type: Number,
-      required: [true, "Number of times this Product was reported"],
+      required: [true, "Number of Product was available"],
+    },
+    description: {
+      type: String,
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,

@@ -5,16 +5,12 @@ import {
   getProduct,
   deleteProduct,
   updateProduct,
-  getAllFilteredProducts,
 } from "../../controllers/ProductControllers/ProductControllers";
 
 const router = Express.Router();
 
 // Get all Products
 router.get("/", getAllProducts);
-
-// Get all Filtered Products
-router.get("/filter", getAllFilteredProducts);
 
 //Create an Product
 router.post("/", createProduct);
