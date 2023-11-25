@@ -30,7 +30,7 @@ export default function BusinessInformation() {
           value={brandType}
           setValue={setBrandType}
           label={"Brand Type"}
-          placeholder={"Input Your Last Name"}
+          placeholder={"Select Type of Your Brand"}
           required
           data={["Local", "National"]}
         />
