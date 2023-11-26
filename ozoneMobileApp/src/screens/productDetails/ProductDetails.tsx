@@ -18,7 +18,7 @@ interface Props {
   route: CourseDetailsScreenRouteProp;
 }
 
-export default function CourseDetailPage({route}: Props) {
+export default function ProductDetailScreen({route}: Props) {
   /** State Management */
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [productDetails, setProductDetails] = useState<ProductModel>();
@@ -71,7 +71,7 @@ export default function CourseDetailPage({route}: Props) {
                 {/* <Status text={String(productDetails?.enrollmentStatus)} /> */}
               </View>
 
-              <View style={styles.courseInfoContainer}>
+              {/* <View style={styles.courseInfoContainer}>
                 <Text style={{color: theme.COLOR.LIGHT_GRAY}}>
                   256 students
                 </Text>
@@ -81,7 +81,7 @@ export default function CourseDetailPage({route}: Props) {
                 <Text style={{color: theme.COLOR.LIGHT_GRAY}}>
                   {productDetails?.location}
                 </Text>
-              </View>
+              </View> */}
 
               <Text style={{color: theme.COLOR.LIGHT_GRAY}}>
                 {productDetails?.description}
@@ -119,7 +119,7 @@ export default function CourseDetailPage({route}: Props) {
               <View style={styles.section}>
                 <Text style={styles.subHeading}>Instructor info</Text>
                 <Text style={{color: theme.COLOR.LIGHT_GRAY}}>
-                  Instructor name: {productDetails?.instructor}
+                  {/* Instructor name: {productDetails?.instructor} */}
                 </Text>
               </View>
               <View style={{height: 130}}></View>
