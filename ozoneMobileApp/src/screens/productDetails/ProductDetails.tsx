@@ -54,7 +54,7 @@ export default function ProductDetailScreen({route}: Props) {
           <ScrollView
             style={styles.container}
             showsVerticalScrollIndicator={false}>
-            <View style={styles.courseCoverImage}>
+            <View style={styles.productCoverImage}>
               <Image
                 source={{uri: productDetails?.imageUrl ?? defaultImage}}
                 style={{height: '100%', width: '100%'}}
@@ -62,73 +62,66 @@ export default function ProductDetailScreen({route}: Props) {
             </View>
 
             {/* Course explicit details */}
-            <View style={styles.courseDetailContainer}>
+            <View style={styles.productDetailContainer}>
               <View style={styles.handleShape}></View>
 
               {/* Course title */}
-              <View style={styles.courseTitleContainer}>
-                <Text style={styles.courseTitle}>{productDetails?.name}</Text>
-                {/* <Status text={String(productDetails?.enrollmentStatus)} /> */}
+              <View style={styles.productTitleContainer}>
+                <Text style={styles.productTitle}>{productDetails?.name}</Text>
               </View>
-
-              {/* <View style={styles.courseInfoContainer}>
-                <Text style={{color: theme.COLOR.LIGHT_GRAY}}>
-                  256 students
-                </Text>
-                <Text style={{color: theme.COLOR.LIGHT_GRAY}}>
-                  {productDetails?.duration}
-                </Text>
-                <Text style={{color: theme.COLOR.LIGHT_GRAY}}>
-                  {productDetails?.location}
-                </Text>
-              </View> */}
 
               <Text style={{color: theme.COLOR.LIGHT_GRAY}}>
                 {productDetails?.description}
               </Text>
 
-              {/* <View style={styles.section}>
-                <Text style={styles.subHeading}>Pre-requisites</Text>
-                <View>
-                  {productDetails?.prerequisites.map((requirement, index) => {
-                    return (
-                      <Text key={index} style={{color: theme.COLOR.LIGHT_GRAY}}>
-                        {requirement}
-                      </Text>
-                    );
-                  })}
+              <View style={styles.section}>
+                <Text style={styles.subHeading}>Cost and avalaibility</Text>
+                <View
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                  }}>
+                  <View style={{flexDirection: 'row', gap: 5}}>
+                    <Text style={{color: theme.COLOR.LIGHT_GRAY}}>Price:</Text>
+                    <Text style={{color: theme.COLOR.PRIMARY}}>
+                      {productDetails?.amount} {productDetails?.currency}
+                    </Text>
+                  </View>
+                  <View style={{flexDirection: 'row', gap: 5}}>
+                    <Text style={{color: theme.COLOR.LIGHT_GRAY}}>
+                      Available Stock:{' '}
+                    </Text>
+                    <Text style={{color: theme.COLOR.PRIMARY}}>
+                      {productDetails?.stock}
+                    </Text>
+                  </View>
                 </View>
-              </View> */}
+              </View>
 
               <View style={styles.syllabusContainer}>
-                <Text style={styles.subHeading}>Syllabus</Text>
+                <Text style={styles.subHeading}>Company Detail</Text>
                 <View style={styles.syllabusSubContainer}>
-                  {/* {productDetails?.syllabus.map((syllabus, index) => {
-                    return (
-                      <Accordion
-                        key={index}
-                        week={syllabus.week}
-                        topic={syllabus.topic}
-                        content={syllabus.content}
-                      />
-                    );
-                  })} */}
+                  <Text style={{color: theme.COLOR.LIGHT_GRAY}}>
+                    Company: {productDetails?.user.brandName}
+                  </Text>
+                  <Text style={{color: theme.COLOR.LIGHT_GRAY}}>
+                    Location: {productDetails?.user.streetAddress}{' '}
+                    {productDetails?.user.city}
+                  </Text>
+                  <Text style={{color: theme.COLOR.LIGHT_GRAY}}>
+                    Phone Number: {productDetails?.user.phoneNumber}
+                  </Text>
                 </View>
               </View>
 
-              <View style={styles.section}>
-                <Text style={styles.subHeading}>Instructor info</Text>
-                <Text style={{color: theme.COLOR.LIGHT_GRAY}}>
-                  {/* Instructor name: {productDetails?.instructor} */}
-                </Text>
-              </View>
               <View style={{height: 130}}></View>
             </View>
           </ScrollView>
           <View style={styles.callToActionContainer}>
             <View style={styles.callToActionInnerContainer}>
-              <TouchableOpacity style={styles.enrollContainer}>
-                <Text style={styles.enrollText}>Enroll Now</Text>
+              <TouchableOpacity style={styles.buyContainer}>
+                <Text style={styles.buyText}>Buy Now</Text>
               </TouchableOpacity>
             </View>
           </View>

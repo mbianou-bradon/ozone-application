@@ -6,8 +6,12 @@ export interface ProductModel {
   currency: string;
   description: string;
   category: string;
-  brandName: string;
-  streetAddress: string;
-  city: string;
+  user: {
+    brandName: string;
+    streetAddress: string;
+    city: string;
+    phoneNumber: number;
+  };
+
   stock: number;
 }

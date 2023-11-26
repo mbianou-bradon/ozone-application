@@ -10,13 +10,13 @@ import {type ProductModel} from '../../utils/types/productModel';
 import client from '../../utils/config/api/axios';
 // import {store} from '../../redux/store/store';
 import handleError from '../../utils/functions/handleError';
+import axios from 'axios';
 
 export default function HomeScreen() {
   /** State management */
   //   const userInfo = store.getState().userReducer.currentUser;
   const [search, setSearch] = useState<string>('');
-  const [featuredCourses, setFeaturedCourses] = useState<ProductModel[]>();
-  const [myCourses, setMyCourses] = useState<ProductModel[]>();
+  const [featuredProducts, setFeaturedCourses] = useState<ProductModel[]>();
 
   /**Display States */
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -37,9 +37,9 @@ export default function HomeScreen() {
     //   });
     setIsLoading(true);
     client
-      .get(`/courses`)
-      .then(response => {
-        const data = response.data.course;
+      .get('/products')
+      .then(async response => {
+        const data = await response.data.products;
         setFeaturedCourses(data);
         setIsLoading(false);
       })
@@ -82,27 +82,12 @@ export default function HomeScreen() {
               showsHorizontalScrollIndicator={false}
               contentContainerStyle={styles.ongoingCourseList}
               horizontal>
-              {featuredCourses &&
-                featuredCourses?.length > 0 &&
-                featuredCourses?.map((featuredCourse, index) => {
-                  return <ProductCard key={index} props={featuredCourse} />;
+              {featuredProducts &&
+                featuredProducts?.length > 0 &&
+                featuredProducts?.map((featuredProduct, index) => {
+                  return <ProductCard key={index} props={featuredProduct} />;
                 })}
             </ScrollView>
-            <ProductCard
-              props={{
-                _id: '',
-                name: '',
-                imageUrl: '',
-                amount: 0,
-                currency: 'Dollars',
-                description: 'lorem ispusm',
-                category: 'Fashio',
-                brandName: 'Oxford',
-                streetAddress: 'Miss Bright',
-                city: 'Buea',
-                stock: 10,
-              }}
-            />
           </View>
         </ScrollView>
       )}

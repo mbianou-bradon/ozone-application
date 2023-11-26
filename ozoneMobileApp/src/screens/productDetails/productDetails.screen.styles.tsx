@@ -7,12 +7,12 @@ const styles = StyleSheet.create({
     height: '100%',
     backgroundColor: theme.COLOR.LIGHT_GRAY,
   },
-  courseCoverImage: {
+  productCoverImage: {
     height: 300,
     width: '100%',
     backgroundColor: theme.COLOR.PRIMARY,
   },
-  courseDetailContainer: {
+  productDetailContainer: {
     backgroundColor: theme.COLOR.LIGHT_DARK,
     width: '100%',
     borderTopStartRadius: 40,
@@ -31,13 +31,13 @@ const styles = StyleSheet.create({
     left: '40%',
     top: 10,
   },
-  courseTitleContainer: {
+  productTitleContainer: {
     marginTop: 30,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'baseline',
   },
-  courseTitle: {
+  productTitle: {
     fontSize: 27,
     color: theme.COLOR.LIGHT,
   },
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   section: {
     marginVertical: 30,
   },
-  courseInfoContainer: {
+  productInfoContainer: {
     flexDirection: 'row',
     gap: 10,
     justifyContent: 'space-between',
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
 
-  enrollContainer: {
+  buyContainer: {
     backgroundColor: theme.COLOR.LIGHT_DARK,
     height: '70%',
     width: '40%',
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: theme.SIZE.EXTRA_SMALL,
   },
-  enrollText: {fontSize: theme.SIZE.EXTRA_LARGE, color: theme.COLOR.LIGHT},
+  buyText: {fontSize: theme.SIZE.EXTRA_LARGE, color: theme.COLOR.LIGHT},
 });
 
 export default styles;
