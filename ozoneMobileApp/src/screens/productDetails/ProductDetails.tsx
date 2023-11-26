@@ -1,5 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import {Image, ScrollView, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Image,
+  Linking,
+  Pressable,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import styles from './productDetails.screen.styles';
 import {LoadingScreen} from '../../components';
 import theme from '../../utils/theme/theme';
@@ -45,6 +53,19 @@ export default function ProductDetailScreen({route}: Props) {
       });
     navigation.canGoBack();
   }, [id]);
+
+  const handlePhoneResponse = () => {
+    let url = `tel:${productDetails?.user.phoneNumber}`;
+    Linking.canOpenURL(url)
+      .then(supported => {
+        if (supported) {
+          return Linking.openURL(url);
+        } else {
+          handleError('Phone Number Error', `Cannot open URL: ${url}`);
+        }
+      })
+      .catch(err => handleError('Phone Number Error', `${err}`));
+  };
   return (
     <>
       {isLoading ? (
@@ -109,9 +130,16 @@ export default function ProductDetailScreen({route}: Props) {
                     Location: {productDetails?.user.streetAddress}{' '}
                     {productDetails?.user.city}
                   </Text>
-                  <Text style={{color: theme.COLOR.LIGHT_GRAY}}>
-                    Phone Number: {productDetails?.user.phoneNumber}
-                  </Text>
+                  <View style={{flexDirection: 'row', gap: 5}}>
+                    <Text style={{color: theme.COLOR.LIGHT_GRAY}}>
+                      Phone Number:
+                    </Text>
+                    <Pressable onPress={handlePhoneResponse}>
+                      <Text style={{color: theme.COLOR.PRIMARY}}>
+                        {productDetails?.user.phoneNumber}
+                      </Text>
+                    </Pressable>
+                  </View>
                 </View>
               </View>
 
