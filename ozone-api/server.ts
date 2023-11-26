@@ -3,6 +3,9 @@ import mongoose from "mongoose";
 import productRoutes from "./routes/productRoutes/ProductRoutes";
 import userRoutes from "./routes/userRoutes/userRoutes";
 import cors from "cors";
+import generateProduct from "./generatingData";
+import { type ProductType } from "./types";
+import Product from "./models/ProductModel/ProductModel";
 
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config({ path: "./vars/.env" });
@@ -20,6 +23,18 @@ mongoose
   .then(() => {
     app.listen(PORT, () => {
       console.log("Listening to server in port", PORT);
+      //   /** testing */
+
+      //   const products: ProductType[] = [];
+
+      //   setTimeout(() => {
+      //     for (let i = 0; i < 500; i++) {
+      //       setTimeout(() => {
+      //         Product.create(generateProduct());
+      //         console.log(i);
+      //       }, 2000);
+      //     }
+      //   }, 5000);
     });
     console.log("successfully connected to database");
   })

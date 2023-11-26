@@ -47,7 +47,8 @@ export const getProduct = async (
 
   const product = await Product.findById(id).populate({
     path: "user",
-    select: "+brandName +streetAdress +city",
+    select:
+      "-firstName -lastName -createdAt -updatedAt -TaxIDNumber -email -password -zipCode",
     options: { strictPopulate: false },
   });
 
@@ -84,7 +85,8 @@ export const getAllProducts = async (
     .limit(limit)
     .populate({
       path: "user",
-      select: "+brandName +streetAdress +city",
+      select:
+        "-firstName -lastName -createdAt -updatedAt -TaxIDNumber -email -password -zipCode",
       options: { strictPopulate: false },
     });
 
