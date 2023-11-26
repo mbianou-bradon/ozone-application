@@ -25,7 +25,6 @@ export default function NativeNavigation() {
       }}>
       <NativeStack.Screen name="Splash" component={Splash} />
       <NativeStack.Screen name="Tab" component={MyTabs} />
-      {/* <NativeStack.Screen name="MyCourses" component={MyCourses} /> */}
       <NativeStack.Screen name="CourseDetail" component={ProductDetailScreen} />
       {/* <NativeStack.Screen name="Login" component={Login} /> */}
     </NativeStack.Navigator>

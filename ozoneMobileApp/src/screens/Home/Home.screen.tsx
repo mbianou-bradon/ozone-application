@@ -45,6 +45,7 @@ export default function HomeScreen() {
       })
       .catch(error => {
         handleError('Error', `${error.message}`);
+        setIsLoading(false);
       });
   }, []);
 
@@ -59,7 +60,7 @@ export default function HomeScreen() {
             {/* Search Field */}
             <View style={styles.searchHeaderContainer}>
               <TextInput
-                placeholder="Search for the course your are looking for..."
+                placeholder="Search for the product your are looking for..."
                 style={styles.searchText}
                 placeholderTextColor={
                   styles.searchTextPlaceholderTextColor.color
@@ -69,30 +70,10 @@ export default function HomeScreen() {
               />
             </View>
           </View>
-          {/* Ongoing courses */}
-          <View style={styles.section}>
-            <View style={styles.ongoingCourseContainerHeader}>
-              <Text style={styles.ContinueLearningText}>Continue Learning</Text>
-              <Pressable>
-                <Text style={styles.seeAllText}>See all</Text>
-              </Pressable>
-            </View>
-            {/* <ScrollView
-              showsHorizontalScrollIndicator={false}
-              contentContainerStyle={styles.ongoingCourseList}
-              horizontal>
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
-            </ScrollView> */}
-          </View>
 
           <View style={styles.section}>
             <View style={styles.ongoingCourseContainerHeader}>
-              <Text style={styles.ContinueLearningText}>Featured Courses</Text>
+              <Text style={styles.ContinueLearningText}>Featured Products</Text>
               <Pressable>
                 <Text style={styles.seeAllText}>See all</Text>
               </Pressable>
@@ -107,6 +88,21 @@ export default function HomeScreen() {
                   return <ProductCard key={index} props={featuredCourse} />;
                 })}
             </ScrollView>
+            <ProductCard
+              props={{
+                _id: '',
+                name: '',
+                imageUrl: '',
+                amount: 0,
+                currency: 'Dollars',
+                description: 'lorem ispusm',
+                category: 'Fashio',
+                brandName: 'Oxford',
+                streetAddress: 'Miss Bright',
+                city: 'Buea',
+                stock: 10,
+              }}
+            />
           </View>
         </ScrollView>
       )}

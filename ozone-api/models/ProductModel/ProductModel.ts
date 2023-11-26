@@ -12,11 +12,16 @@ const ProductSchema = new mongoose.Schema(
       required: [true, "A Product must belong to atleast one Category"],
     },
     imageUrl: {
-      type: Array,
+      type: String,
+      required: [true, "Product image required"],
     },
     amount: {
       type: Number,
       required: [true, "Please enter amount of the Product"],
+    },
+    currency: {
+      type: String,
+      required: [true, "Add price currency"],
     },
     stock: {
       type: Number,
