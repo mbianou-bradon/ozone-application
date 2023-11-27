@@ -81,10 +81,12 @@ export default function SignUp() {
             />
           )}
           <Button
-            text="Next Step"
+            text={index === 2 ? "Submit" : "Next Step"}
             type="filled"
             rightIcon
-            onClick={() => handleNext(index)}
+            onClick={() => {
+              index === 2 ? console.log("End of List") : handleNext(index);
+            }}
           />
         </div>
       </div>
