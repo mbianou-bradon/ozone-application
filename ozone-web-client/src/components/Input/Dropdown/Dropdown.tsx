@@ -100,7 +100,7 @@ export default function Dropdown({
             </div>
             {viewTooltip && (
               <div className="absolute w-[350px] -top-3 left-7 z-20">
-                <div className="px-4 py-2 text-xs text-white bg-dark-purple/80 rounded-lg relative before:absolute before:w-3 before:h-3 before:bg-dark-purple/80 before:-left-1.5 before:top-4 before:rotate-45">
+                <div className="px-4 py-2 text-xs text-white bg-slate-800/80 rounded-lg relative before:absolute before:w-3 before:h-3 before:bg-slate-800/80 before:-left-1.5 before:top-4 before:rotate-45">
                   <p className="mb-3">
                     Local: Brands with distribution in 3 divisions or less OR
                     multiple divisions but a total of 150 stores or less.

@@ -75,6 +75,9 @@ export default function SignUp() {
         brandName,
         brandType,
         streetAddress,
+        firstAgreement,
+        secondAgreement,
+        thirdAgreement,
         city,
         zipCode,
         taxIDNumber,
@@ -87,28 +90,52 @@ export default function SignUp() {
       };
       if (password === confirmPassword) {
         dispatch(createUserSlice.actions.createNewUser(newUser));
+        console.log({
+          firstName: newUser.firstName,
+          lastName: newUser.lastName,
+          email: newUser.email,
+          password: newUser.password,
+          confirmPassword: newUser.confirmPassword,
+          brandName: newUser.brandName,
+          brandType: newUser.brandType,
+          phoneNumber: Number(newUser.phoneNumber),
+          streetAddress: newUser.streetAddress,
+          city: newUser.city,
+          zipCode: newUser.zipCode,
+          taxIDNumber: newUser.taxIDNumber,
+          additionalUser: {
+            userName,
+            userPhoneNumber: Number(userPhoneNumber),
+            userEmail,
+            userPassword,
+          },
+          firstAgreement: newUser.firstAgreement,
+          secondAgreement: newUser.secondAgreement,
+          thirdAgreement: newUser.thirdAgreement,
+        });
+        alert("Please check your browser console");
+        setFirstName("");
+        setLastName("");
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
+        setPhoneNumber("");
+        setBrandName("");
+        setBrandType("");
+        setStreetAddress("");
+        setCity("");
+        setUserEmail("");
+        setUserName("");
+        setUserPhoneNumber("");
+        setUserPassword("");
+        setZipCode("");
+        setTaxIDNumber("");
+        setFirstAgreement("");
+        setSecondAgreement("");
+        setThirdAgreement("");
+      } else {
+        alert("Password and confirmPassword doesn't match");
       }
-
-      return {
-        firstName: newUser.firstName,
-        lastName: newUser.lastName,
-        email: newUser.email,
-        password: newUser.password,
-        confirmPassword: newUser.confirmPassword,
-        brandName: newUser.brandName,
-        brandType: newUser.brandType,
-        phoneNumber: Number(newUser.phoneNumber),
-        streetAddress: newUser.streetAddress,
-        city: newUser.city,
-        zipCode: newUser.zipCode,
-        taxIDNumber: newUser.taxIDNumber,
-        additionalUser: {
-          userName,
-          userPhoneNumber: Number(userPhoneNumber),
-          userEmail,
-          userPassword,
-        },
-      };
     }
   }
   const RegistrationSteps = [
@@ -189,63 +216,75 @@ export default function SignUp() {
   }
 
   function handleNext(index: number) {
-    if (confirmPassword === password) {
-      if (index + 1 > RegistrationSteps.length) {
-        setIndex(RegistrationSteps.length);
-      } else {
-        setIndex(index + 1);
-      }
+    if (index + 1 > RegistrationSteps.length) {
+      setIndex(RegistrationSteps.length);
     } else {
-      alert("Password and confirmPassword doesn't match");
+      setIndex(index + 1);
     }
   }
 
   return (
-    <div className="text-slate-800 w-full sm:w-[80%] lg:w-[70%] xl:w-[60%] mx-auto my-10">
-      <div className="rounded-2xl  shadow-xl">
-        <HeaderBreadCrumb index={index} setIndex={setIndex} />
-        <div className="text-center py-10">
-          <h3 className="text-neutral-gray">
-            Step {RegistrationSteps[index].number}
-          </h3>
-          <h1 className="text-2xl text-dark-blue font-semibold my-2">
-            {RegistrationSteps[index].heading}
-          </h1>
-          <p className="w-[55%] mx-auto">
-            {RegistrationSteps[index].description}
-          </p>
+    <div className="relative">
+      <div className="absolute -z-10 h-fit w-full top-0">
+        <div className="bg-gradient-to-l from-purple-700 to-light-purple w-full h-[40vh]"></div>
+        <div className="bg-light-blue w-full h-[10vh]"></div>
+      </div>
+      <div className="text-slate-800 w-full sm:w-[80%] lg:w-[70%] xl:w-[60%] mx-auto z-30">
+        <nav className="flex items-center justify-between py-10 text-white">
+          <h2
+            className="font-bold cursor-pointer"
+            onClick={() => navigate("/")}
+          >
+            Ozone
+          </h2>
+          <h1 className="text-2xl">Create New Account</h1>
+          <p>Contact Us</p>
+        </nav>
+        <div className="rounded-2xl  shadow-xl bg-white">
+          <HeaderBreadCrumb index={index} setIndex={setIndex} />
+          <div className="text-center py-10">
+            <h3 className="text-neutral-gray">
+              Step {RegistrationSteps[index].number}
+            </h3>
+            <h1 className="text-2xl text-dark-blue font-semibold my-2">
+              {RegistrationSteps[index].heading}
+            </h1>
+            <p className="w-[55%] mx-auto">
+              {RegistrationSteps[index].description}
+            </p>
+          </div>
+
+          <form action="" className="px-20 pb-10">
+            {RegistrationSteps[index].node}
+          </form>
         </div>
 
-        <form action="" className="px-20 pb-10">
-          {RegistrationSteps[index].node}
-        </form>
-      </div>
-
-      <div className="flex items-center justify-between my-10">
-        <Button
-          text="Back to Login"
-          type="none"
-          leftIcon
-          onClick={() => navigate("/auth/sign-in")}
-        />
-
-        <div className="flex gap-3">
-          {index !== 0 && (
-            <Button
-              text="Previous Step"
-              type="bordered"
-              leftIcon
-              onClick={() => handlePrev(index)}
-            />
-          )}
+        <div className="flex items-center justify-between my-10">
           <Button
-            text={index === 2 ? "Submit" : "Next Step"}
-            type="filled"
-            rightIcon
-            onClick={() => {
-              index === 2 ? console.log(handleAddData()) : handleNext(index);
-            }}
+            text="Back to Login"
+            type="none"
+            leftIcon
+            onClick={() => navigate("/auth/sign-in")}
           />
+
+          <div className="flex gap-3">
+            {index !== 0 && (
+              <Button
+                text="Previous Step"
+                type="bordered"
+                leftIcon
+                onClick={() => handlePrev(index)}
+              />
+            )}
+            <Button
+              text={index === 2 ? "Submit" : "Next Step"}
+              type="filled"
+              rightIcon
+              onClick={() => {
+                index === 2 ? handleAddData() : handleNext(index);
+              }}
+            />
+          </div>
         </div>
       </div>
     </div>

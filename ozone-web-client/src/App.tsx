@@ -2,7 +2,7 @@ import { Outlet, createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Contact, Error, Home, SignIn, SignUp } from "./page";
 const MyApp = () => {
   return (
-    <div className="bg-primary [&_*]:transition-transform [&_*]:ease-linear [&_*]:duration-200">
+    <div className="bg-primary [&_*]:transition-transform [&_*]:ease-linear [&_*]:duration-200 multibackground">
       <div>
         <Outlet />
       </div>

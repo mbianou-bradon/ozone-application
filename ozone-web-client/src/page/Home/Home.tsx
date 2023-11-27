@@ -50,7 +50,7 @@ export default function Home() {
   }, [isLoading]);
   return (
     <div className="w-4/5 mx-auto">
-      <nav className="flex items-center justify-between  h-20 bg-slate-300">
+      <nav className="w-4/5 mx-auto top-0 flex items-center justify-between  h-20 bg-slate-300 px-4 rounded-b-md fixed z-40">
         <h2 className="text-2xl font-bold">Ozone</h2>
         <ul>
           <li>Home</li>
@@ -70,7 +70,7 @@ export default function Home() {
         </div>
       </nav>
 
-      <div className="flex items-center gap-5 justify-between flex-wrap mt-10">
+      <div className="flex items-center gap-5 justify-between flex-wrap mt-32">
         {Number(products?.length) > 0 ? (
           products?.map((product, index) => {
             return (
