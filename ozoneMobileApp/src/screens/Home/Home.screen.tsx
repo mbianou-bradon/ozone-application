@@ -105,16 +105,7 @@ export default function HomeScreen() {
                 <Text style={styles.seeAllText}>See all</Text>
               </Pressable>
             </View>
-            {/* <ScrollView
-              showsHorizontalScrollIndicator={false}
-              contentContainerStyle={styles.ongoingCourseList}
-              horizontal>
-              {featuredProducts &&
-                featuredProducts?.length > 0 &&
-                featuredProducts?.map((featuredProduct, index) => {
-                  return <ProductCard key={index} props={featuredProduct} />;
-                })}
-            </ScrollView> */}
+
             <FlatList
               data={featuredProducts}
               showsVerticalScrollIndicator={false}
