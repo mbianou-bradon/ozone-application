@@ -1,42 +1,57 @@
 import React, { useState } from "react";
 import { TextInput } from "../../../../../components";
 
-export default function AdditionalUsers() {
-  /** State management */
-  const [firstName, setFirstName] = useState<string>("");
-  const [phoneNumber, setPhoneNumber] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+type Props = {
+  userName: string;
+  setUserName: React.Dispatch<React.SetStateAction<string>>;
+  userPhoneNumber: number;
+  setUserPhoneNumber: React.Dispatch<React.SetStateAction<number>>;
+  userEmail: string;
+  setUserEmail: React.Dispatch<React.SetStateAction<string>>;
+  userPassword: string;
+  setUserPassword: React.Dispatch<React.SetStateAction<string>>;
+};
+
+export default function AdditionalUsers({
+  userEmail,
+  userName,
+  userPassword,
+  userPhoneNumber,
+  setUserEmail,
+  setUserName,
+  setUserPassword,
+  setUserPhoneNumber,
+}: Props) {
   return (
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <TextInput
-          value={firstName}
-          setValue={setFirstName}
+          value={userName}
+          setValue={setUserName}
           label={"Username"}
           placeholder={"Input Your userame"}
           required
           inputType={"text"}
         />
         <TextInput
-          value={email}
-          setValue={setEmail}
+          value={userEmail}
+          setValue={setUserEmail}
           label={"Email"}
           placeholder={"Input Your Email"}
           required
           inputType={"email"}
         />
         <TextInput
-          value={phoneNumber}
-          setValue={setPhoneNumber}
+          value={userPhoneNumber}
+          setValue={setUserPhoneNumber}
           label={"Phone Number"}
           placeholder={"Input Your Phone Number"}
           required
-          inputType={"text"}
+          inputType={"number"}
         />
         <TextInput
-          value={password}
-          setValue={setPassword}
+          value={userPassword}
+          setValue={setUserPassword}
           label={"Password"}
           placeholder={"Create Password"}
           required

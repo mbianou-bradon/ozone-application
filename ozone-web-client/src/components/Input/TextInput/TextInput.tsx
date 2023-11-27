@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
 type Props = {
-  value: string;
-  setValue: React.Dispatch<React.SetStateAction<string>>;
+  value: any;
+  setValue: React.Dispatch<React.SetStateAction<any>>;
   label: string;
   placeholder: string;
   required: boolean;
-  inputType: "text" | "email" | "password";
+  inputType: "text" | "email" | "password" | "number";
 };
 
 export default function TextInput({

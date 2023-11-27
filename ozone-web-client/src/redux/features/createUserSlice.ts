@@ -3,9 +3,18 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../store/store";
 import { type UserType } from "../../utils/types/userType";
 
+interface UpdateUserType extends UserType {
+  additionalUser: {
+    userName: string;
+    userEmail: string;
+    userPhoneNumber: number;
+    userPassword: string;
+  };
+}
+
 interface userState {
   currentUser: UserType;
-  newUser: UserType;
+  newUser: UpdateUserType;
 }
 
 const initialState: userState = {
@@ -36,6 +45,12 @@ const initialState: userState = {
     city: "",
     zipCode: "",
     taxIDNumber: "",
+    additionalUser: {
+      userName: "",
+      userEmail: "",
+      userPhoneNumber: 0,
+      userPassword: "",
+    },
   },
 };
 
@@ -46,12 +61,8 @@ export const createUserSlice = createSlice({
     currentUser: (state, action) => {
       state.currentUser = action.payload;
     },
-    createNewUser: (
-      state,
-      action: PayloadAction<{ key: keyof UserType; value: any }>
-    ) => {
-      const { key, value } = action.payload;
-      state.newUser = { ...state.newUser, [key]: value };
+    createNewUser: (state, action) => {
+      state.newUser = { ...state.newUser, ...action.payload };
     },
   },
 });

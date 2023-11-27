@@ -5,14 +5,52 @@ import {
   TextInput,
 } from "../../../../../components";
 
-export default function BusinessInformation() {
+type Props = {
+  brandName: string;
+  setBrandName: React.Dispatch<React.SetStateAction<string>>;
+  brandType: string;
+  setBrandType: React.Dispatch<React.SetStateAction<string>>;
+  streetAddress: string;
+  setStreetAddress: React.Dispatch<React.SetStateAction<string>>;
+  city: string;
+  setCity: React.Dispatch<React.SetStateAction<string>>;
+  zipCode: string;
+  setZipCode: React.Dispatch<React.SetStateAction<string>>;
+  taxIDNumber: string;
+  setTaxIDNumber: React.Dispatch<React.SetStateAction<string>>;
+
+  /**Agreement states */
+  firstAgreement: string;
+  setFirstAgreement: React.Dispatch<React.SetStateAction<string>>;
+  secondAgreement: string;
+  setSecondAreement: React.Dispatch<React.SetStateAction<string>>;
+  thirdAgreement: string;
+  setThirdAgreement: React.Dispatch<React.SetStateAction<string>>;
+};
+
+export default function BusinessInformation({
+  brandName,
+  setBrandName,
+  brandType,
+  setBrandType,
+  setStreetAddress,
+  streetAddress,
+  city,
+  setCity,
+  zipCode,
+  setZipCode,
+  taxIDNumber,
+  setTaxIDNumber,
+
+  /**Agreement states */
+  firstAgreement,
+  setFirstAgreement,
+  secondAgreement,
+  setSecondAreement,
+  thirdAgreement,
+  setThirdAgreement,
+}: Props) {
   /** State management */
-  const [brandName, setBrandName] = useState<string>("");
-  const [brandType, setBrandType] = useState<string>("");
-  const [streetAddress, setStreetAddress] = useState<string>("");
-  const [city, setCity] = useState<string>("");
-  const [zipCode, setZipCode] = useState<string>("");
-  const [taxIDNumber, setTaxIDNumber] = useState<string>("");
 
   return (
     <div>

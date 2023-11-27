@@ -6,30 +6,136 @@ import BusinessInformation from "./components/BusinessInformation/BusinessInform
 import YourProfile from "./components/YourProfile/YourProfile";
 import AdditionalUsers from "./components/AdditionalUsers/AdditionalUsers";
 import HeaderBreadCrumb from "./components/HeaderBreadCrumb/HeaderBreadCrumb";
+import { useAppDispatch } from "../../../redux/store/hooks";
+import { createUserSlice } from "../../../redux/features/createUserSlice";
 
 export default function SignUp() {
   /** state management */
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const [phoneNumber, setPhoneNumber] = useState<number>(0);
+
+  /** brand state management */
+  const [brandName, setBrandName] = useState<string>("");
+  const [brandType, setBrandType] = useState<string>("");
+  const [streetAddress, setStreetAddress] = useState<string>("");
+  const [city, setCity] = useState<string>("");
+  const [zipCode, setZipCode] = useState<string>("");
+  const [taxIDNumber, setTaxIDNumber] = useState<string>("");
+
+  /** Agreement states */
+  const [firstAgreement, setFirstAgreement] = useState<string>("");
+  const [secondAgreement, setSecondAgreement] = useState<string>("");
+  const [thirdAgreement, setThirdAgreement] = useState<string>(">");
+
+  /** Additional users state management */
+  const [userName, setUserName] = useState<string>("");
+  const [userPhoneNumber, setUserPhoneNumber] = useState<number>(0);
+  const [userEmail, setUserEmail] = useState<string>("");
+  const [userPassword, setUserPassword] = useState<string>("");
+
   const [index, setIndex] = useState<number>(0);
+
+  /** Redux state management */
+  const dispatch = useAppDispatch();
+
+  function handleAddData() {
+    if (password === confirmPassword) {
+      dispatch(
+        createUserSlice.actions.createNewUser({
+          firstName,
+          lastName,
+          email,
+          password,
+          confirmPassword,
+          phoneNumber,
+          brandName,
+          brandType,
+          streetAddress,
+          city,
+          zipCode,
+          taxIDNumber,
+          additionUser: {
+            userName,
+            userPhoneNumber,
+            userEmail,
+            userPassword,
+          },
+        })
+      );
+    }
+  }
   const RegistrationSteps = [
     {
       number: 1,
       heading: "Your Profile",
       description:
         "Enter the login information for your account. You will be able to create additional users after registering.",
-      node: <YourProfile />,
+      node: (
+        <YourProfile
+          firstName={firstName}
+          setFirstName={setFirstName}
+          lastName={lastName}
+          setLastName={setLastName}
+          email={email}
+          setEmail={setEmail}
+          password={password}
+          setPassword={setPassword}
+          phoneNumber={phoneNumber}
+          setPhoneNumber={setPhoneNumber}
+          confirmPassword={confirmPassword}
+          setConfirmPassword={setConfirmPassword}
+        />
+      ),
     },
     {
       number: 2,
       heading: "Business Information",
       description: "Please, enter information about your company",
-      node: <BusinessInformation />,
+      node: (
+        <BusinessInformation
+          brandName={brandName}
+          setBrandName={setBrandName}
+          brandType={brandType}
+          setBrandType={setBrandType}
+          streetAddress={streetAddress}
+          setStreetAddress={setStreetAddress}
+          city={city}
+          setCity={setCity}
+          zipCode={zipCode}
+          setZipCode={setZipCode}
+          taxIDNumber={taxIDNumber}
+          setTaxIDNumber={setTaxIDNumber}
+          /**Agreements */
+          firstAgreement={firstAgreement}
+          setFirstAgreement={setFirstAgreement}
+          secondAgreement={secondAgreement}
+          setSecondAreement={setSecondAgreement}
+          thirdAgreement={thirdAgreement}
+          setThirdAgreement={setThirdAgreement}
+        />
+      ),
     },
     {
       number: 3,
       heading: "Create Additional Users",
       description:
         "Please fill in additional information to create extra users",
-      node: <AdditionalUsers />,
+      node: (
+        <AdditionalUsers
+          userName={userName}
+          setUserName={setUserName}
+          userPhoneNumber={userPhoneNumber}
+          setUserPhoneNumber={setUserPhoneNumber}
+          userEmail={userEmail}
+          setUserEmail={setUserEmail}
+          userPassword={userPassword}
+          setUserPassword={setUserPassword}
+        />
+      ),
     },
   ];
 
@@ -40,10 +146,14 @@ export default function SignUp() {
   }
 
   function handleNext(index: number) {
-    if (index + 1 > RegistrationSteps.length) {
-      setIndex(RegistrationSteps.length);
+    if (confirmPassword === password) {
+      if (index + 1 > RegistrationSteps.length) {
+        setIndex(RegistrationSteps.length);
+      } else {
+        setIndex(index + 1);
+      }
     } else {
-      setIndex(index + 1);
+      alert("Password and confirmPassword doesn't match");
     }
   }
 

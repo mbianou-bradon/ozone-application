@@ -1,15 +1,37 @@
 import React, { useState } from "react";
 import { TextInput } from "../../../../../components";
+import { useAppDispatch } from "../../../../../redux/store/hooks";
+import { createUserSlice } from "../../../../../redux/features/createUserSlice";
 
-export default function YourProfile() {
-  /** State management */
-  const [firstName, setFirstName] = useState<string>("");
-  const [lastName, setLastName] = useState<string>("");
-  const [phoneNumber, setPhoneNumber] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [confirmPassword, setConfirmPassword] = useState<string>("");
+type Props = {
+  firstName: string;
+  setFirstName: React.Dispatch<React.SetStateAction<string>>;
+  lastName: string;
+  setLastName: React.Dispatch<React.SetStateAction<string>>;
+  email: string;
+  setEmail: React.Dispatch<React.SetStateAction<string>>;
+  password: string;
+  setPassword: React.Dispatch<React.SetStateAction<string>>;
+  phoneNumber: number;
+  setPhoneNumber: React.Dispatch<React.SetStateAction<number>>;
+  confirmPassword: string;
+  setConfirmPassword: React.Dispatch<React.SetStateAction<string>>;
+};
 
+export default function YourProfile({
+  firstName,
+  lastName,
+  email,
+  phoneNumber,
+  password,
+  confirmPassword,
+  setFirstName,
+  setLastName,
+  setEmail,
+  setPassword,
+  setPhoneNumber,
+  setConfirmPassword,
+}: Props) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
       <TextInput
@@ -42,7 +64,7 @@ export default function YourProfile() {
         label={"Phone Number"}
         placeholder={"Input Your Phone Number"}
         required
-        inputType={"text"}
+        inputType={"number"}
       />
       <TextInput
         value={password}
