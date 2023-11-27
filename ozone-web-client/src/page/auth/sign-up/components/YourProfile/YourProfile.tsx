@@ -12,8 +12,8 @@ type Props = {
   setEmail: React.Dispatch<React.SetStateAction<string>>;
   password: string;
   setPassword: React.Dispatch<React.SetStateAction<string>>;
-  phoneNumber: number;
-  setPhoneNumber: React.Dispatch<React.SetStateAction<number>>;
+  phoneNumber: string;
+  setPhoneNumber: React.Dispatch<React.SetStateAction<string>>;
   confirmPassword: string;
   setConfirmPassword: React.Dispatch<React.SetStateAction<string>>;
 };
@@ -64,7 +64,7 @@ export default function YourProfile({
         label={"Phone Number"}
         placeholder={"Input Your Phone Number"}
         required
-        inputType={"number"}
+        inputType={"text"}
       />
       <TextInput
         value={password}

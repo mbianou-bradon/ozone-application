@@ -111,8 +111,14 @@ export default function BusinessInformation({
         Once the following documents are signed, you'll be ready to get started
       </p>
       <div className="flex flex-col gap-3">
-        <DocumentSigning />
-        <DocumentSigning />
+        <DocumentSigning
+          signatureUrl={firstAgreement}
+          setSignatureUrl={setFirstAgreement}
+        />
+        <DocumentSigning
+          signatureUrl={secondAgreement}
+          setSignatureUrl={setSecondAreement}
+        />
       </div>
 
       <h2 className="text-dark-blue mt-8 mb-2 text-sm">COI PDF UPLOAD</h2>
@@ -120,7 +126,10 @@ export default function BusinessInformation({
         Once the following documents are signed, you'll be ready to get started
       </p>
       <div className="flex flex-col gap-3">
-        <DocumentSigning />
+        <DocumentSigning
+          signatureUrl={thirdAgreement}
+          setSignatureUrl={setThirdAgreement}
+        />
       </div>
     </div>
   );

@@ -25,7 +25,7 @@ export default function SignaturePad({
   }
 
   return (
-    <div className="absolute top-0 left-0 bg-black/50 min-h-[120vh] w-full flex items-center justify-center flex-col">
+    <div className="fixed top-0 left-0 bg-black/50 h-screen w-full flex items-center justify-center flex-col z-50">
       <div className="flex justify-end w-full relative">
         <p
           className="absolute text-2xl -top-10 right-1/4 w-8 h-8 rounded-full flex items-center justify-center cursor-pointer bg-black/70 text-slate-200"

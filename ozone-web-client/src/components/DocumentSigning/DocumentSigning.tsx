@@ -2,10 +2,17 @@ import React, { useState } from "react";
 import { Button, SignaturePad } from "..";
 import TickIcon from "../../assets/icons/tick-icon";
 
-export default function DocumentSigning() {
+type Props = {
+  signatureUrl: string;
+  setSignatureUrl: React.Dispatch<React.SetStateAction<string>>;
+};
+
+export default function DocumentSigning({
+  signatureUrl,
+  setSignatureUrl,
+}: Props) {
   /** state management */
   const [signed, setSigned] = useState<boolean>(true);
-  const [signatureUrl, setSignatureUrl] = useState<string>("");
   const [openPad, setOpenPad] = useState<boolean>(false);
 
   return (

@@ -4,8 +4,8 @@ import { TextInput } from "../../../../../components";
 type Props = {
   userName: string;
   setUserName: React.Dispatch<React.SetStateAction<string>>;
-  userPhoneNumber: number;
-  setUserPhoneNumber: React.Dispatch<React.SetStateAction<number>>;
+  userPhoneNumber: string;
+  setUserPhoneNumber: React.Dispatch<React.SetStateAction<string>>;
   userEmail: string;
   setUserEmail: React.Dispatch<React.SetStateAction<string>>;
   userPassword: string;
@@ -47,7 +47,7 @@ export default function AdditionalUsers({
           label={"Phone Number"}
           placeholder={"Input Your Phone Number"}
           required
-          inputType={"number"}
+          inputType={"text"}
         />
         <TextInput
           value={userPassword}

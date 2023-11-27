@@ -8,6 +8,7 @@ import AdditionalUsers from "./components/AdditionalUsers/AdditionalUsers";
 import HeaderBreadCrumb from "./components/HeaderBreadCrumb/HeaderBreadCrumb";
 import { useAppDispatch } from "../../../redux/store/hooks";
 import { createUserSlice } from "../../../redux/features/createUserSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
   /** state management */
@@ -16,7 +17,7 @@ export default function SignUp() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
-  const [phoneNumber, setPhoneNumber] = useState<number>(0);
+  const [phoneNumber, setPhoneNumber] = useState<string>("");
 
   /** brand state management */
   const [brandName, setBrandName] = useState<string>("");
@@ -29,11 +30,11 @@ export default function SignUp() {
   /** Agreement states */
   const [firstAgreement, setFirstAgreement] = useState<string>("");
   const [secondAgreement, setSecondAgreement] = useState<string>("");
-  const [thirdAgreement, setThirdAgreement] = useState<string>(">");
+  const [thirdAgreement, setThirdAgreement] = useState<string>("");
 
   /** Additional users state management */
   const [userName, setUserName] = useState<string>("");
-  const [userPhoneNumber, setUserPhoneNumber] = useState<number>(0);
+  const [userPhoneNumber, setUserPhoneNumber] = useState<string>("");
   const [userEmail, setUserEmail] = useState<string>("");
   const [userPassword, setUserPassword] = useState<string>("");
 
@@ -41,31 +42,73 @@ export default function SignUp() {
 
   /** Redux state management */
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   function handleAddData() {
-    if (password === confirmPassword) {
-      dispatch(
-        createUserSlice.actions.createNewUser({
-          firstName,
-          lastName,
-          email,
-          password,
-          confirmPassword,
-          phoneNumber,
-          brandName,
-          brandType,
-          streetAddress,
-          city,
-          zipCode,
-          taxIDNumber,
-          additionUser: {
-            userName,
-            userPhoneNumber,
-            userEmail,
-            userPassword,
-          },
-        })
-      );
+    if (
+      firstName === "" ||
+      lastName === "" ||
+      email === "" ||
+      password === "" ||
+      confirmPassword === "" ||
+      phoneNumber === "" ||
+      brandName === "" ||
+      brandType === "" ||
+      streetAddress === "" ||
+      city === "" ||
+      zipCode === "" ||
+      taxIDNumber === "" ||
+      userName === "" ||
+      userName === "" ||
+      userPassword === "" ||
+      userPhoneNumber === ""
+    ) {
+      alert("Please all fields must be provided");
+    } else {
+      const newUser = {
+        firstName,
+        lastName,
+        email,
+        password,
+        confirmPassword,
+        phoneNumber,
+        brandName,
+        brandType,
+        streetAddress,
+        city,
+        zipCode,
+        taxIDNumber,
+        additionUser: {
+          userName,
+          userPhoneNumber,
+          userEmail,
+          userPassword,
+        },
+      };
+      if (password === confirmPassword) {
+        dispatch(createUserSlice.actions.createNewUser(newUser));
+      }
+
+      return {
+        firstName: newUser.firstName,
+        lastName: newUser.lastName,
+        email: newUser.email,
+        password: newUser.password,
+        confirmPassword: newUser.confirmPassword,
+        brandName: newUser.brandName,
+        brandType: newUser.brandType,
+        phoneNumber: Number(newUser.phoneNumber),
+        streetAddress: newUser.streetAddress,
+        city: newUser.city,
+        zipCode: newUser.zipCode,
+        taxIDNumber: newUser.taxIDNumber,
+        additionalUser: {
+          userName,
+          userPhoneNumber: Number(userPhoneNumber),
+          userEmail,
+          userPassword,
+        },
+      };
     }
   }
   const RegistrationSteps = [
@@ -179,7 +222,12 @@ export default function SignUp() {
       </div>
 
       <div className="flex items-center justify-between my-10">
-        <Button text="Back to Login" type="none" leftIcon />
+        <Button
+          text="Back to Login"
+          type="none"
+          leftIcon
+          onClick={() => navigate("/auth/sign-in")}
+        />
 
         <div className="flex gap-3">
           {index !== 0 && (
@@ -195,7 +243,7 @@ export default function SignUp() {
             type="filled"
             rightIcon
             onClick={() => {
-              index === 2 ? console.log("End of List") : handleNext(index);
+              index === 2 ? console.log(handleAddData()) : handleNext(index);
             }}
           />
         </div>
