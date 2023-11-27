@@ -2,7 +2,15 @@ import Express from "express";
 import mongoose from "mongoose";
 import Product from "../../models/ProductModel/ProductModel";
 
-// Create a new Product and store in database
+/**
+ * createProduct - Create a newProduct with information gotten from the request body
+ * @req : Incoming request argument
+ * @res : response argument
+ * @next : Function that proceed to the next Middleware
+ *
+ * Return : return the created data if positive or error message if fails
+ *
+ */
 export const createProduct = async (
   req: Express.Request,
   res: Express.Response,
@@ -33,7 +41,15 @@ export const createProduct = async (
   }
 };
 
-// Get a new Product
+/**
+ * getOneProduct - Get One Product from the Database with a particular id
+ * @req : Incoming request argument
+ * @res : response argument
+ * @next : Function that proceed to the next Middleware
+ *
+ * Return : return the fetched data if positive or error message if fails
+ *
+ */
 export const getProduct = async (
   req: Express.Request,
   res: Express.Response,
@@ -66,7 +82,15 @@ export const getProduct = async (
   );
 };
 
-//Get all the Product
+/**
+ * getAllProducts - Get all Products from the Database and sort it from latest to oldest
+ * @req : Incoming request argument
+ * @res : response argument
+ * @next : Function that proceed to the next Middleware
+ *
+ * Return : return the fetched data if positive or error message if fails
+ *
+ */
 export const getAllProducts = async (
   req: Express.Request,
   res: Express.Response,
@@ -105,7 +129,15 @@ export const getAllProducts = async (
   return next(res.status(200).json(response));
 };
 
-// Update an Product
+/**
+ * updateProduct - Update a particular Product info with id gotten from request params
+ * @req : Incoming request argument
+ * @res : response argument
+ * @next : Function that proceed to the next Middleware
+ *
+ * Return : return the fetched data if positive or error message if fails
+ *
+ */
 export const updateProduct = async (
   req: Express.Request,
   res: Express.Response,
@@ -146,7 +178,15 @@ export const updateProduct = async (
   );
 };
 
-// Delete an Product
+/**
+ * deleteProduct - find aProducte by id and delete it from the database
+ * @req : Incoming request argument
+ * @res : response argument
+ * @next : Function that proceed to the next Middleware
+ *
+ * Return : return a positive message if successfull or error message if fails
+ *
+ */
 export const deleteProduct = async (
   req: Express.Request,
   res: Express.Response,
