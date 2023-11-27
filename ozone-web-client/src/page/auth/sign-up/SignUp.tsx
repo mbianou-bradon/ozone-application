@@ -254,12 +254,12 @@ export default function SignUp() {
             </p>
           </div>
 
-          <form action="" className="px-20 pb-10">
+          <form action="" className="px-4 sm:px-10 md:px-20 pb-10">
             {RegistrationSteps[index].node}
           </form>
         </div>
 
-        <div className="flex items-center justify-between my-10">
+        <div className="flex items-center justify-between flex-wrap-reverse sm:flex-nowrap my-10 gap-5 px-4 sm:px-0">
           <Button
             text="Back to Login"
             type="none"
