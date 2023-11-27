@@ -121,7 +121,9 @@ export default function HomeScreen() {
               renderItem={({item}) => <ProductCard props={item} />}
               ListEmptyComponent={
                 <View>
-                  <Text>Empty List</Text>
+                  <Text style={{color: theme.COLOR.LIGHT_GRAY}}>
+                    Empty List
+                  </Text>
                 </View>
               }
               bounces
